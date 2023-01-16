@@ -1,0 +1,300 @@
+{% extends "shared/base.html" %}
+{% block page_content %}
+
+<div class="container_check">
+    <form id="form_check">
+        <div class="row mb-3 justify-content-md-center">
+            <div class="col-6">
+                <input type="text" class="form-control " required name="sss_id" id="sss_id"
+                    placeholder="SSS ID tài khoản muốn kiểm tra">
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">Kiểm tra tài khoản</button>
+
+            </div>
+        </div>
+    </form>
+    <div class="content_body">
+        <div class="box_historical mt-5 mb-5">
+            <div class="row ">
+                <div class="col-6 ">
+
+                    <h3 class="text-center">Tình trạng tài khoản</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Content</th>
+                                            <th scope="col">Reason</th>
+                                            <th scope="col">Until Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Block</td>
+                                            <td id="content_block" style="overflow-x: auto; max-width: 100px;" ></td>
+                                            <td id="content_block_time"></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Ban Until</td>
+                                            <td id="content_ban_until" style="overflow-x: auto ; max-width: 100px;" ></td>
+                                            <td id="content_ban_until_time"></td>
+                                            
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Limit Until</td>
+                                            <td id="content_limit_until" style="overflow-x: auto; max-width: 100px;"></td>
+                                            <td id="content_limit_until_time"></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-6 ">
+                    <h3 class="text-center">Lịch sử nâng cấp tài khoản</h1>
+                        <div class="row">
+                            <div class="col-12" style="max-height: 200px; overflow: auto;">
+                                <table class="table table-striped " id="table_historical">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">SSS ID</th>
+                                            <th scope="col">Level</th>
+                                            <th scope="col">Start day</th>
+                                            <th scope="col">End day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody_historical_upgrade">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <button type="button" id="btn_ban_limit" class="btn btn-outline-primary">Ban/Limit User</button>
+            </div>
+            <div class="col-2">
+                <button type="button" id="btn_undo_ban_limit" class="btn btn-outline-success">Undo Ban/Limit
+                    User</button>
+            </div>
+            <div class="col-2">
+                <button type="button" id="btn_upgrade" class="btn btn-outline-info">Nâng cấp tài khoản</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="alert_form_ban alert_form" style="height: 500px;">
+    <div class="card" style="width: 35rem; ">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-11">
+                    <h5 class="card-title sssidd">Ban/Limit @sssid</h5>
+                </div>
+                <div class="col-1">
+                    <h5 class="card-title btn_close">X</h5>
+                </div>
+            </div>
+
+            <h6 class="card-subtitle mb-2 text-muted view_text">User này hiện đang bị </h6>
+            <form id="form_block">
+                <div class="mb-3">
+                    <label for="select_type" class="form-label">Lựa chọn ban/limit</label>
+                    <select class="form-select" id="action" aria-label="Default select example">
+                        <option value="lock">Block vĩnh viễn</option>
+                        <option value="ban30">Ban acc 30 ngày</option>
+                        <option value="limit30">Limit tương tác 30 ngày</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ip_reason_undo_ban_limit" class="form-label">Lý do ban/limit</label>
+                    <input type="text" required class="form-control" id="ip_reason_ban_limit"
+                        placeholder="Lý do ban/limit">
+                </div>
+
+                <div class="mb-3">
+                    <label for="select_type" class="form-label">Chọn team thực hiện hành động này</label>
+                    <select id="team" class="form-select" aria-label="Default select example">
+                        <option value="Ops">Ops</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sale">Sale</option>
+                        <option value="Tech">Tech</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ip_name_action" class="form-label">Điền tên người thực hiện hành động này</label>
+                    <input type="text" required class="form-control" id="ip_name_action"
+                        placeholder="Điền tên người thực hiện hành động này">
+                </div>
+
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="alert_form_unban alert_form" style="height: 500px;">
+    <div class="card" style="width: 35rem;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-11">
+                    <h5 class="card-title sssidd">Gỡ Ban/Limit @sssid</h5>
+                </div>
+                <div class="col-1">
+                    <h5 class="card-title btn_close">X</h5>
+                </div>
+            </div>
+
+            <h6 class="card-subtitle mb-2 text-muted view_text">User này hiện đang </h6>
+
+            <form id="form_unblock">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Lý do gỡ ban/limit</label>
+                    <input type="text" required class="form-control" id="ip_reason_undo_ban_limit"
+                        aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Lựa chọn mở ban/limit</label>
+                    <select id="action_undo" class="form-select" name="action">
+                        <option value="unlock_acc">Mở block vĩnh viễn</option>
+                        <option value="unlock_30_day">Mở khóa 30 ngày</option>
+                        <option value="unlock_limit_30_day">Mở khóa hạn chế tương tác 30 ngày</option>
+                    </select>
+                </div>
+                
+               
+
+                <div class="mb-3">
+                    <label for="select_type" class="form-label">Chọn team thực hiện hành động này</label>
+                    <select id="team_undo" class="form-select" aria-label="Default select example">
+                        <option value="Ops">Ops</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sale">Sale</option>
+                        <option value="Tech">Tech</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ip_name_action" class="form-label">Điền tên người thực hiện hành động này</label>
+                    <input type="text" required class="form-control" id="ip_name_action_undo"
+                        aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="alert_form_upgrade alert_form" >
+    <div class="card mt-5" style="width: 35rem;" >
+        <div class="card-body">
+            <div class="row">
+                <div class="col-11">
+                    <h5 class="card-title sssidd">Nâng cấp @sssid</h5>
+                </div>
+                <div class="col-1">
+                    <h5 class="card-title btn_close">X</h5>
+                </div>
+            </div>
+
+            <h6 class="card-subtitle mb-2 text-muted view_text">User này hiện đang </h6>
+            
+            <form id="form_upgrade">
+                <div class="mb-3">
+                    <label for="select_type" class="form-label">Chọn cấp tài khoản</label>
+                    <select class="form-select" id="account_level_id" aria-label="Default select example">
+                        <option value='21'>Trial</option>
+                        <option value="22">Store</option>
+                        <option value="23">Merchant</option>
+                        <option value="24">Partner</option>
+                        <option value="25">Business</option>
+                        <option value="6">KOL</option>
+                        <option value='NULL'>Null</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="select_type" class="form-label">Chọn team thực hiện hành động này</label>
+                    <select id="team_upgrade" class="form-select" aria-label="Default select example">
+                        <option value="Ops">Ops</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sale">Sale</option>
+                        <option value="Tech">Tech</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="ip_name_action" class="form-label">Điền tên người thực hiện hành động này</label>
+                    <input type="text" id="ip_name_action_upgrade" required class="form-control" id="ip_name_action">
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Xác nhận</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>Bạn có chắn chắc về sự thay đổi này</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Hủy</button>
+          <button type="button" id="confirm_ban" class="btn btn-primary " data-bs-dismiss="modal">Đồng ý</button>
+          <button type="button" id="confirm_unban" class="btn btn-primary " data-bs-dismiss="modal">Đồng ý</button>
+          <button type="button" id="confirm_upgrade" class="btn btn-primary " data-bs-dismiss="modal">Đồng ý</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container  position-fixed top-0 end-0">
+    <div class="toast" id="toast_success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success" style="color: white;">
+        
+          <strong class= "me-auto" >Thành công</strong>
+          <!-- <small>11 mins ago</small> -->
+          <button type="button" class="btn-close btn-close-success" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body toast-body-success">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    
+      <div class="toast"  id="toast_fail" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-danger " style="color: white;">
+          <strong class="me-auto">Đã xảy ra lỗi</strong>
+          <!-- <small>11 mins ago</small> -->
+          <button type="button" class="btn-close btn-close-fail" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body toast-body-fail">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    
+  </div>
+ 
+
+  
+{% endblock %}

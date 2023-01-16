@@ -1,0 +1,200 @@
+<!-- {% extends "shared/base.html" %}
+{% block page_content %} -->
+<form >
+  <h1 class="text-center ">Khóa tài khoản</h1>
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+        <div class="mb-3" >
+          <input type="text" class="form-control" required name="sss_id" id="sss_id"   placeholder="SSS ID tài khoản muốn khóa" >
+        </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <div class="mb-3">
+
+        <input type="text" class="form-control" required name="reason"  id="reason" placeholder="Lí do khóa tài khoản" >
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <!-- <div class="col-6">
+      <div class="mb-3">
+        <select id="action" class="form-select" name="action" >
+          <option value="lock">Khóa vĩnh viễn</option>
+          <option value="ban30">Khóa 30 ngày</option>
+          <option value="limit30">Hạn chế tương tác 30 ngày</option>
+          <option value="unlock_acc">Mở khóa acc</option>
+          <option value="unlock_30_day">Mở khóa 30 ngày</option>
+          <option value="unlock_limit_30_day">Mở khóa hạn chế tương tác 30 ngày</option>
+        </select>
+    </div> -->
+
+   
+
+    </div>
+    <div class="row justify-content-md-center">
+          <div class="col-6">
+            <select id="action" class="form-select" name="action" >
+              <option value="action_block" id="action_block" >Block</option>
+              <option value="action_unblock" id="action_unblock">UnBlock</option>
+            </select>
+          </div>
+         
+      </div>
+      </div>
+    </div>
+
+
+  <div class="row justify-content-md-center">
+    <div class="col-4">
+      <div class="mt-4">
+        <div class="box_block" >
+          <div class="col-6">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked  value="Khoa vinh vien">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Khóa vĩnh viễn
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked value="Khoa 30 ngay">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Khóa 30 ngày
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked value="Han che 30 ngay">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Hạn chế tương tác 30 ngày
+              </label>
+            </div>
+          
+        </div>
+        
+        
+         
+        </div>
+          <div class="box_unblock" >
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked value="Mo khoa acc">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Mở khóa acc
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked value="Mo khoa 30 ngay">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Mở khóa 30 ngày
+              </label>
+            </div>
+            <div class="form-check" >
+              <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked value="Mo khoa han che 30 ngay"  >
+              <label class="form-check-label" for="flexRadioDefault2">
+                Mở khóa hạn chế tương tác 30 ngày
+              </label>
+            </div>
+        </div>
+      </div>
+ 
+    </div>
+    
+
+  </div>
+  
+
+  <div class="row justify-content-md-center" >
+    <div class="col-2" >
+      <button type="submit" style="width: 100%;" class="btn btn-primary" id="btn_submit">Submit</button>
+    </div>
+  </div>
+
+
+</form>
+
+<!-- {% endblock %} 
+
+{% block script_js %} -->
+<script>
+  document.getElementsByClassName("box_block")[0].hidden = true;
+  document.getElementsByClassName("box_unblock")[0].hidden = true;
+
+  $( "#action" ).change(function() {
+    
+    $( "#action option:selected" ).each(function() {
+        if($(this).val()=="action_block"){
+          document.getElementsByClassName("box_block")[0].hidden = false;
+          document.getElementsByClassName("box_unblock")[0].hidden = true;
+
+        }else{
+         
+          document.getElementsByClassName("box_block")[0].hidden = true;
+          document.getElementsByClassName("box_unblock")[0].hidden = false;
+        }
+    });
+  }); 
+  $('input[type=radio][name=flexRadioDefault]').change(function() {
+    
+      if (this.value == 'Khoa vinh vien') {
+          
+      }
+      else if (this.value == 'Khoa 30 ngay') {
+          
+      }
+      else if (this.value == 'Han che 30 ngay') {
+          
+      }
+      else if (this.value == 'Mo khoa acc') {
+          
+      }
+      else if (this.value == 'Mo khoa 30 ngay') {
+          
+      }
+      else if (this.value == 'Mo khoa han che 30 ngay') {
+         
+      }
+  });
+
+
+  $(".nav-link-ban").addClass("active");
+  $("form").submit(()=>{
+      var formData = {
+        sss_id:$("#sss_id").val(),
+        reason:$("#reason").val(),
+        action:$("#action").val()
+      };
+      $.ajax({
+        type: "POST",
+        url: "/ban_shop",
+        data: formData,
+        statusCode: {
+          200: function(data) {
+              Swal.fire(
+              data.sss_id+" "+data.action,
+              "Reason: "+data.reason,
+              'success'
+          )
+          },
+          404: function(data) {
+           
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why do I have this issue?</a>'
+            })
+          }
+        }
+
+        }).done(function(data) {
+          
+        }).fail(function() {
+          
+        })
+        event.preventDefault();
+      }
+)
+
+</script>
+<!-- {% endblock %} -->
+

@@ -1,0 +1,12 @@
+{
+    "fastapi_app": {
+        "method": "fastapi_app",
+        "args": {}
+    },
+    "db_engine": {
+        "method": "init_db_engine",
+        "args": {
+            "credential_path": "resource/db_dev_credential.json"
+        }
+    }
+}

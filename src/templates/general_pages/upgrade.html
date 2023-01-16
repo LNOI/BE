@@ -1,0 +1,75 @@
+<!-- {% extends "shared/base.html" %}
+{% block page_content %} -->
+<form>
+  <h1 class="text-center ">Nâng cấp tài khoản</h1>
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <div class="mb-3">
+        <!-- <label for="exampleInputEmail1" class="form-label"></label> -->
+        <input type="text" class="form-control" id="sss_id" required name="sss_id"
+          placeholder="SSS ID tài khoản muốn khóa">
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <div class="mb-3">
+        <select id="account_level_id" name="account_level_id" class="form-select">
+          <option value='21'>Trial</option>
+          <option value="22">Store</option>
+          <option value="23">Merchant</option>
+          <option value="24">Partner</option>
+          <option value="25">Business</option>
+          <option value="6">KOL</option>
+          <option value='NULL'>Null</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-2">
+      <button type="submit" style="width: 100%;" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+
+<!-- {% endblock %} 
+
+{% block script_js %} -->
+<script>
+  $(".nav-link-upgrade").addClass("active");
+  $("form").submit(() => {
+    var formData = {
+      sss_id: $("#sss_id").val(),
+      account_level_id: $("#account_level_id").val(),
+    };
+    $.ajax({
+      type: "POST",
+      url: "/upgrade_account",
+      data: formData
+
+    }).done(function (data) {
+      console.log(data.sss_id)
+      Swal.fire(
+        data.sss_id,
+        "Update " + data.account_level_id,
+        'success'
+      )
+    }).fail(function () {
+      console.log(data)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
+
+    })
+    event.preventDefault();
+  }
+  )
+
+
+</script>
+<!-- {% endblock %} -->

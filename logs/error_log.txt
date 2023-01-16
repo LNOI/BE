@@ -1,0 +1,430 @@
+Log entry start: 2022-11-14 14:20:44,222 - error_logger - ERROR - Raw query failed: query 
+    select id
+    from account_user
+    where sss_id = 'thanhloiui'
+    : error: (psycopg2.OperationalError) connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 558, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/account-interaction-server/src/execute_query/utils.py", line 27, in execute_raw_query
+    rr = db_engine.execute(query, **kwargs).fetchall()
+  File "<string>", line 2, in execute
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+    return fn(*args, **kwargs)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3036, in execute
+    connection = self.connect(close_with_result=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3095, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 91, in __init__
+    else engine.raw_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3174, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3144, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2003, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 558, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+Log entry start: 2022-11-14 14:20:45,892 - error_logger - ERROR - Raw query failed: query 
+    select id
+    from account_user
+    where sss_id = 'thanhloiui'
+    : error: (psycopg2.OperationalError) connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 558, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/account-interaction-server/src/execute_query/utils.py", line 27, in execute_raw_query
+    rr = db_engine.execute(query, **kwargs).fetchall()
+  File "<string>", line 2, in execute
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+    return fn(*args, **kwargs)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3036, in execute
+    connection = self.connect(close_with_result=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3095, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 91, in __init__
+    else engine.raw_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3174, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3144, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2003, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 558, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+Log entry start: 2022-11-14 14:22:29,677 - error_logger - ERROR - Raw query failed: query 
+    select id
+    from account_user
+    where sss_id = 'thanhloiui'
+    : error: (psycopg2.OperationalError) connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+Traceback (most recent call last):
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 558, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/account-interaction-server/src/execute_query/utils.py", line 27, in execute_raw_query
+    rr = db_engine.execute(query, **kwargs).fetchall()
+  File "<string>", line 2, in execute
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+    return fn(*args, **kwargs)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3036, in execute
+    connection = self.connect(close_with_result=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3095, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 91, in __init__
+    else engine.raw_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3174, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3144, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2003, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 558, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/ubuntu/anaconda3/envs/fashion39/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "vn1.api.sssmarket.com" (103.186.100.11), port 6432 failed: FATAL:  unsupported startup parameter: options
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+Log entry start: 2023-01-02 02:30:24,620 - error_logger - ERROR - Raw query failed: query 
+        select id,private_metadata,metadata,amount,caption,currency,created_at,is_public,is_sold,item_name,brand,condition_id,size_id,style_id,used_under_id,user_id,total_favorites,thumbnail,is_deleted,link,total_shares,is_for_sale,damages,note,custom_hashtags,category_id,total_views,gender_id,ai_metadata,address_id,is_stock_available,backup_meta,original_price_amount,is_virtual_fit,cluster_id,order_delay,material_id,maximal_variant_price_amount,minimal_variant_price_amount,media_of_images from post
+        where id in :post_ids
+    : error: (psycopg2.errors.UndefinedColumn) column "media_of_images" does not exist
+LINE 2: ...variant_price_amount,minimal_variant_price_amount,media_of_i...
+                                                             ^
+
+[SQL: 
+        select id,private_metadata,metadata,amount,caption,currency,created_at,is_public,is_sold,item_name,brand,condition_id,size_id,style_id,used_under_id,user_id,total_favorites,thumbnail,is_deleted,link,total_shares,is_for_sale,damages,note,custom_hashtags,category_id,total_views,gender_id,ai_metadata,address_id,is_stock_available,backup_meta,original_price_amount,is_virtual_fit,cluster_id,order_delay,material_id,maximal_variant_price_amount,minimal_variant_price_amount,media_of_images from post
+        where id in %(post_ids)s
+    ]
+[parameters: {'post_ids': (10000,)}]
+(Background on this error at: http://sqlalche.me/e/14/f405)
+Traceback (most recent call last):
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "media_of_images" does not exist
+LINE 2: ...variant_price_amount,minimal_variant_price_amount,media_of_i...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/account-interaction-server/src/execute_query/utils.py", line 27, in execute_raw_query
+    rr = db_engine.execute(query, **kwargs).fetchall()
+  File "<string>", line 2, in execute
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+    return fn(*args, **kwargs)
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3037, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1200, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "media_of_images" does not exist
+LINE 2: ...variant_price_amount,minimal_variant_price_amount,media_of_i...
+                                                             ^
+
+[SQL: 
+        select id,private_metadata,metadata,amount,caption,currency,created_at,is_public,is_sold,item_name,brand,condition_id,size_id,style_id,used_under_id,user_id,total_favorites,thumbnail,is_deleted,link,total_shares,is_for_sale,damages,note,custom_hashtags,category_id,total_views,gender_id,ai_metadata,address_id,is_stock_available,backup_meta,original_price_amount,is_virtual_fit,cluster_id,order_delay,material_id,maximal_variant_price_amount,minimal_variant_price_amount,media_of_images from post
+        where id in %(post_ids)s
+    ]
+[parameters: {'post_ids': (10000,)}]
+(Background on this error at: http://sqlalche.me/e/14/f405)
+Log entry start: 2023-01-02 02:50:03,050 - error_logger - ERROR - Raw query failed: query 
+        select idprivate_metadatametadataamountcaptioncurrencycreated_atis_publicis_solditem_namebrandcondition_idsize_idstyle_idused_under_iduser_idtotal_favoritesthumbnailis_deletedlinktotal_sharesis_for_saledamagesnotecustom_hashtagscategory_idtotal_viewsgender_idai_metadataaddress_idis_stock_availablebackup_metaoriginal_price_amountis_virtual_fitcluster_idorder_delaymaterial_idmaximal_variant_price_amountminimal_variant_price_amount from post
+        where id in :post_ids
+    : error: (psycopg2.errors.UndefinedColumn) column "idprivate_metadatametadataamountcaptioncurrencycreated_atis_pub" does not exist
+LINE 2:         select idprivate_metadatametadataamountcaptioncurren...
+                       ^
+
+[SQL: 
+        select idprivate_metadatametadataamountcaptioncurrencycreated_atis_publicis_solditem_namebrandcondition_idsize_idstyle_idused_under_iduser_idtotal_favoritesthumbnailis_deletedlinktotal_sharesis_for_saledamagesnotecustom_hashtagscategory_idtotal_viewsgender_idai_metadataaddress_idis_stock_availablebackup_metaoriginal_price_amountis_virtual_fitcluster_idorder_delaymaterial_idmaximal_variant_price_amountminimal_variant_price_amount from post
+        where id in %(post_ids)s
+    ]
+[parameters: {'post_ids': (10000, 28313)}]
+(Background on this error at: http://sqlalche.me/e/14/f405)
+Traceback (most recent call last):
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "idprivate_metadatametadataamountcaptioncurrencycreated_atis_pub" does not exist
+LINE 2:         select idprivate_metadatametadataamountcaptioncurren...
+                       ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/account-interaction-server/src/execute_query/utils.py", line 27, in execute_raw_query
+    rr = db_engine.execute(query, **kwargs).fetchall()
+  File "<string>", line 2, in execute
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/deprecations.py", line 390, in warned
+    return fn(*args, **kwargs)
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3037, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1200, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/data1/anaconda3/envs/fashion39/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "idprivate_metadatametadataamountcaptioncurrencycreated_atis_pub" does not exist
+LINE 2:         select idprivate_metadatametadataamountcaptioncurren...
+                       ^
+
+[SQL: 
+        select idprivate_metadatametadataamountcaptioncurrencycreated_atis_publicis_solditem_namebrandcondition_idsize_idstyle_idused_under_iduser_idtotal_favoritesthumbnailis_deletedlinktotal_sharesis_for_saledamagesnotecustom_hashtagscategory_idtotal_viewsgender_idai_metadataaddress_idis_stock_availablebackup_metaoriginal_price_amountis_virtual_fitcluster_idorder_delaymaterial_idmaximal_variant_price_amountminimal_variant_price_amount from post
+        where id in %(post_ids)s
+    ]
+[parameters: {'post_ids': (10000, 28313)}]
+(Background on this error at: http://sqlalche.me/e/14/f405)

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sssmarket </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style_post.css') }}">
+</head>
+
+<body>
+    <form>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="row mb-3 justify-content-around">
+                    <div class="col-8">
+                        <input type="text" class="form-control " required name="post_ids"  id="post_ids" placeholder="Post ids muốn kiểm tra" >
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary">Check Post Ids</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </form>
+    <div class="content_post_id">
+       
+        <div class="container" id="bboximage">
+           
+        </div>
+
+    </div> 
+
+
+</body>
+<script>
+    const bbox =document.getElementById("bboximage");
+    $("form").submit(()=>{
+        event.preventDefault();
+        console.log("Submit");
+        const formdata = {
+          post_ids:$("#post_ids").val().split(","),
+        };
+        console.log(JSON.stringify(formdata))
+        $.ajax({
+            method: "post",
+            url: '/get_info',
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(formdata)
+  
+          }).done(function(data) {
+            for (const [key, value] of Object.entries(data)) {
+                var content_p = `<div class="row">`
+                content_p+=`<h3>`+key+`</h3>`
+                value.forEach((link)=>{
+                    ext = link.split('.')[1]
+                    console.log(ext)
+                    if(ext=='png' || ext=='jpg' || ext=='jpeg' || ext=='PNG' || ext=='JPG' || ext=='JPEG')
+                    {
+                        content_p += `<div class="col-lg-2 col-md-3 mb-4 mb-lg-0" >
+                                <img
+                                src="https://media.sssmarket.com/sss-market-product/`+link+`"
+                                class="w-100 shadow-1-strong rounded mb-4"
+                                alt="Boat on Calm Water"
+                                />
+                            </div>
+                            `
+                    }else{
+                        content_p += `<div class="col-lg-2 col-md-3 mb-4 mb-lg-0" >
+                            <img
+                            src="https://colormedia.vn/public/upload/Blog/linh/9%20loi%20ich%20cua%20video/video-.jpg?1591950113988"
+                            class="w-100 shadow-1-strong rounded mb-4"
+                            alt="Boat on Calm Water"
+                            />
+                        </div>
+                        `
+                    }
+                    
+
+                })
+                content_p+='</div>'
+                bbox.innerHTML+=content_p    
+            }
+          }).fail(function() {
+          })
+         
+        }
+      )
+
+      let slideIndex = 1;
+      showSlides(slideIndex);
+      
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+      
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+      
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("demo");
+        let captionText = document.getElementById("caption");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        captionText.innerHTML = dots[slideIndex-1].alt;
+      }
+</script>
+</html>

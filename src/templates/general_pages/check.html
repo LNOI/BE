@@ -1,0 +1,84 @@
+<!-- {% extends "shared/base.html" %}
+{% block page_content %} -->
+        
+        <form >
+            
+          <div class="row mb-3 justify-content-md-center">
+                <div class="col-6 ">
+                    <input type="text" class="form-control " required name="sss_id"  id="sss_id" placeholder="SSS ID tài khoản muốn kiểm tra" >
+                </div>
+          </div>
+          <div class="row mb-3 justify-content-md-center">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Kiểm tra tài khoản</button>
+                </div>
+          </div>
+          
+        </form>
+        <div class="row justify-content-md-center">
+          <div class="col-8">
+              <table class="table table-striped ">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Content</th>
+                      <th scope="col">Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Block</td>
+                      <td id="content_block"></td>
+                      
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Ban Until</td>
+                      <td id="content_ban_until"></td>
+                
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Limit Until</td>
+                      <td id="content_limit_until"></td>
+                     
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+        </div>
+
+<script>
+  $(".nav-link-check").addClass("active");
+  $("form").submit(()=>{
+      var formData = {
+        sss_id:$("#sss_id").val(),
+      };
+      $.ajax({
+        type: "POST",
+        url: "/check_account",
+        data: formData
+
+        }).done(function(data) {
+          
+          $("#content_block").html(data.Block)
+          $("#content_ban_until").html(data.Ban_Until)
+          $("#content_limit_until").html(data.Limit_Until)
+          
+        }).fail(function() {
+          console.log(data)
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
+
+        })
+        event.preventDefault();
+      }
+    )
+
+</script>
+

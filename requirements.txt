@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+pandas
+Jinja2
+python-multipart
+requests
+httptools
+kafka-python
+tqdm
+minio
+openpyxl
+xlsxwriter
+msoffcrypto-tool
+pyxlsb

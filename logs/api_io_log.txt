@@ -1,0 +1,16 @@
+Log entry start: 2022-11-14 14:20:44,159 - app_logger - INFO - sss_id: thanhloiui
+Log entry start: 2022-11-14 14:20:44,160 - app_logger - INFO - Client IP: 127.0.0.1
+Log entry start: 2022-11-14 14:20:44,160 - app_logger - INFO - Client Port: 49150
+Log entry start: 2022-11-14 14:20:45,838 - app_logger - INFO - sss_id: thanhloiui
+Log entry start: 2022-11-14 14:20:45,839 - app_logger - INFO - Client IP: 127.0.0.1
+Log entry start: 2022-11-14 14:20:45,839 - app_logger - INFO - Client Port: 49148
+Log entry start: 2022-11-14 14:22:29,620 - app_logger - INFO - sss_id: thanhloiui
+Log entry start: 2022-11-14 14:22:29,621 - app_logger - INFO - Client IP: 127.0.0.1
+Log entry start: 2022-11-14 14:22:29,621 - app_logger - INFO - Client Port: 50948
+Log entry start: 2022-11-14 14:22:49,496 - app_logger - INFO - sss_id: thanhloiui
+Log entry start: 2022-11-14 14:22:49,497 - app_logger - INFO - Client IP: 127.0.0.1
+Log entry start: 2022-11-14 14:22:49,497 - app_logger - INFO - Client Port: 51310
+Log entry start: 2022-11-14 14:23:51,984 - app_logger - INFO - sss_id: thanhloiui
+Log entry start: 2022-11-14 14:23:51,985 - app_logger - INFO - Client IP: 127.0.0.1
+Log entry start: 2022-11-14 14:23:51,986 - app_logger - INFO - Client Port: 52340
+Log entry start: 2022-11-14 14:23:53,624 - app_logger - INFO - user_id: 846587

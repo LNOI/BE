@@ -1,0 +1,27 @@
+version: '3.4' # docker compose version
+
+services:
+  # container name
+  internal-server:
+    # stdin_open: true 
+    # tty: true
+    build:
+      context: .
+      dockerfile: ${PWD}/Dockerfile
+    image: $CONTAINER_IMAGE:$BUILD_IMAGE_TAG
+    container_name: $CONTAINER_NAME
+    volumes:
+      - /data/internal-tool/logs:/app/logs
+    working_dir: /app
+    entrypoint: ["python3.9", "app.py", "$CONFIG_SET"]
+    ports:
+      - "$EXPOSE_PORT:$EXPOSE_PORT"
+    networks:
+      ai_service:
+        aliases:
+          - internal-tool
+    restart: always
+
+networks:
+    ai_service:
+      external: true
